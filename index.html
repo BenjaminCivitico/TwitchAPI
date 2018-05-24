@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <!--Meta Tags I have to include-->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <link rel="manifest" href="manifest.json">
+
+  <title>List Twitch Online</title>
+  <meta name="author" content="Benjamin Civitico">
+  <meta name="description" content="">
+  <meta name="keywords" content="Free Code Camp FCC Twitch API Benjamin Civitico Online View">
+  <link rel="shortcut icon" href="favicon.ico" type="image/vnd.microsoft.icon">
+
+  <!-- JQuery -->
+  <script type="text/javascript" src="scripts/jquery-3.3.1.min.js"></script>
+
+  <!-- Bootstrap 4.0 CDN -->
+  <link rel="stylesheet" href="style/bootstrap/css/bootstrap.min.css">
+  <script src="scripts/bootstrap/js/bootstrap.min.js"></script>
+
+  <!-- My Style Sheet-->
+  <link rel="stylesheet" type="text/css" href="style/style.css">
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Slabo+27px|Open+Sans|Source+Sans+Pro" rel="stylesheet">
+
+  <!-- Google Analytics-->
+  <script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-XXXXXXXX-Y']);
+  _gaq.push(['_trackPageview']);
+  (function()
+  {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+  </script>
+
+  <script type="text/javascript">
+  var noLocalStorage = '<div class="alert alert-danger" style="position:absolute; z-index: 9999; margin: 20em 1em 0 1em;" role="alert"> <strong>Oh snap!</strong> Local storage isn&prime;t working, sorry. Please enable Local Storage to use this app</div>';
+  var twitchUsers = [];
+  $(document).ready(function(){
+    if (typeof(Storage) !== "undefined") {
+      twitchUsers = localStorage.twitchUsers;
+    } else {
+        $('body').prepend(noLocalStorage);
+    }
+  });
+
+  </script>
+</head>
+
+<body>
+  <div id="page" class="container-fluid d-flex flex-column align-items-center justify-contents-center">
+    <div id="pageMenu" class="container-fluid d-flex flex-row align-items-center justify-contents-center row pt-5 pb-2">
+      <div class="col-3 text-center"><a href="#" class="text-primary">Menu</a></div>
+      <div class="col-6 text-center">Twitch Streams</div>
+      <div class="col-3 text-center"><a href="#" onClick="$('#popUpContainer').show()">Add</a></div>
+    </div>
+    <div id="pageContent" class="container-fluid">
+
+    </div>
+    <div id="popUpContainer" class="container-fluid" style="display:none;">
+      <div id="addTwitchUserPopup" class="container-fluid d-flex flex-column align-items-center" style="display:none;">
+        <div id="addTwitchUserDialogueBox" class="card " style="width: 18rem; ">
+          <div class="card-body">
+            <form>
+              <div class="form-group">
+                <label for="addTwitchUser">Add Twitch User</label>
+                <small id="twitchUserHelp" class="form-text text-muted">Add channel to your watchlist</small>
+                <input type="text" class="form-control" id="twitchAccountToAdd" aria-describedby="emailHelp" placeholder="twitch.tv/*Name*">
+                
+              </div>
+              <div class="row">
+                <div class="dialogueButton col-6 text-center"><button type="button" class="btn btn-link" onClick="$('#popUpContainer').hide()">Close</button></div>
+                <div class="dialogueButton col-6 text-center"><button type="submit" class="btn btn-link">Add</button></div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+<script>
+  if ('serviceWorker' in navigator) {
+    console.log("Will the service worker register?");
+    navigator.serviceWorker.register('service-worker.js')
+      .then(function(reg){
+        console.log("Yes, it did.");
+      }).catch(function(err) {
+        console.log("No it didn't. This happened: ", err)
+      });
+  }
+</script>
+</html>

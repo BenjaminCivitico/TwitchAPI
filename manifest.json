@@ -1,0 +1,15 @@
+{
+  "short_name": "List Twitch Online",
+  "name": "List Twitch Online",
+  "icons": [
+    {
+      "src":"favicon.ico",
+      "sizes": "240x240",
+      "type": "image/png"
+    }
+  ],
+  "start_url": "/?utm_source=homescreen",
+  "background_color": "#000",
+  "Theme_color": "#000",
+  "display": "standalone"
+}
